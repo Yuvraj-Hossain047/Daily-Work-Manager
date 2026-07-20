@@ -1,0 +1,362 @@
+:root {
+    --bg-base: #0a1929;
+    --panel-bg: #132f4c;
+    --text-primary: #f0f7ff;    
+    --text-muted: #94a3b8;
+    --accent: #17b9a7;
+    --accent-success: #0ae68c;
+    --border-light: #2d4c73;    
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+}
+
+.app-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+}
+
+@media (min-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 280px 1fr;
+    }
+}
+
+/* === PANEL CARDS WITH GLOWING INTERFACES === */
+.panel {
+    background: var(--panel-bg);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 40px; /* Updated from 20px to spread panels apart */
+    box-shadow: 0 0 10px rgba(23, 185, 167, 0.15);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.nav-arrow {
+    background: rgba(45, 76, 115, 0.4);
+    color: var(--text-primary);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 4px 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.nav-arrow:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+}
+
+.cal-day {
+    background: var(--bg-base);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 8px 2px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.cal-day span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.cal-day.is-today {
+    border: 2px solid var(--accent-success);
+}
+
+.cal-day.active {
+    background: var(--accent);
+    color: var(--bg-base);
+    font-weight: bold;
+    border-color: var(--accent);
+}
+
+/* === CIRCULAR RADIAL METRIC === */
+.circular-progress-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 15px auto;
+}
+
+.circular-progress {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circle-bg {
+    fill: none;
+    stroke: var(--border-light);
+    stroke-width: 8;
+}
+
+.circle-progress {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 100 100;
+    transition: stroke-dashoffset 0.4s ease;
+}
+
+.metric-status {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+.metric-subtext {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* === GRID FORM COMPONENTS & GLOW FIELDS === */
+.form-detailed-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 600px) {
+    .form-detailed-grid {
+        grid-template-columns: 2fr 1.2fr 1.2fr 100px;
+        align-items: flex-end;
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+input[type="text"], select, .time-input-wrapper {
+    background-color: #061324;
+    color: var(--text-primary);
+    padding: 11px 14px;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    box-shadow: 0 0 10px rgba(23, 185, 167, 0.2);
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 45px;
+}
+
+/* Fixes glow state across all interactive elements including the time input box */
+input[type="text"]:focus, 
+select:focus, 
+.time-input-wrapper:focus-within {
+    border-color: var(--accent-success);
+    box-shadow: 0 0 12px rgba(10, 230, 140, 0.3);
+    outline: none;
+}
+
+.time-input-wrapper {
+    padding: 3px 14px;
+    display: flex;
+    align-items: center;
+}
+
+.time-input-wrapper input[type="time"] {
+    background: transparent;
+    color: var(--accent);
+    font-family: monospace;
+    font-size: 1.05rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.time-input-wrapper input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(68%) sepia(51%) saturate(545%) hue-rotate(124deg);
+}
+
+#addElementBtn {
+    background: var(--accent);
+    color: var(--bg-base);
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    width: 100%;
+    min-height: 45px;
+    box-sizing: border-box;
+}
+
+#addElementBtn:hover {
+    background: var(--accent-success);
+    box-shadow: 0 0 12px rgba(10, 230, 140, 0.4);
+}
+
+/* === NAVIGATION TABS === */
+.tab-container {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+}
+
+.tab-btn {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: var(--panel-bg);
+    color: var(--accent);
+    border-color: var(--border-light);
+}
+
+/* === LOG ENTRIES & STATUS BADGES === */
+.matrix-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.matrix-item:last-child {
+    border-bottom: none;
+}
+
+.matrix-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.time-stamp {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.badge {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.badge-routine { background: rgba(0, 191, 255, 0.15); color: #00bfff; }
+.badge-workout { background: rgba(10, 230, 140, 0.15); color: #0ae68c; }
+.badge-meeting { background: rgba(238, 130, 238, 0.15); color: #ee82ee; }
+.badge-business { background: rgba(255, 165, 0, 0.15); color: #ffa500; }
+.badge-freetime { background: rgba(186, 85, 211, 0.15); color: #ba55d3; }
+
+.item-text.completed {
+    text-decoration: line-through;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.action-btns {
+    display: flex;
+    gap: 8px;
+}
+
+.check-btn, .delete-btn {
+    background: transparent;
+    color: #e2e8f0;
+    border: 1px solid var(--border-light);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.check-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--text-muted);
+}
+
+.check-btn.is-complete {
+    background: rgba(10, 230, 140, 0.15);
+    color: var(--accent-success);
+    border-color: var(--accent-success);
+}
+
+.delete-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.delete-btn:hover {
+    background: rgba(239, 68, 68, 0.25);
+}
+
+.empty-notice {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px 0;
+    width: 100%;
+    font-style: italic;
+}
