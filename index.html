@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Work Manager</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Daily Work Manager</h1>
+        </header>
+
+        <div class="dashboard-grid">
+            
+            <!-- Left Column -->
+            <aside class="left-col">
+                <div class="panel">
+                    <div class="calendar-header">
+                        <button id="prevWeekBtn" class="nav-arrow">&lt;</button>
+                        <h3>Select Date</h3>
+                        <button id="nextWeekBtn" class="nav-arrow">&gt;</button>
+                    </div>
+                    <div id="calendarGrid" class="calendar-grid"></div>
+                </div>
+
+                <div class="panel">
+                    <h3>Tasks Finished</h3>
+                    <div class="circular-progress-container">
+                        <svg class="circular-progress" viewBox="0 0 120 120">
+                            <circle class="circle-bg" cx="60" cy="60" r="54" pathLength="100" />
+                            <circle id="momentumCircleProgress" class="circle-progress" cx="60" cy="60" r="54" pathLength="100" />
+                        </svg>
+                        <div id="momentumText" class="metric-status">0%</div>
+                    </div>
+                    <p id="momentumSubtext" class="metric-subtext"></p>
+                </div>
+            </aside>
+
+            <!-- Right Column -->
+            <main class="right-col">
+                <div class="panel">
+                    <h3>Add Task</h3>
+                    <div class="form-detailed-grid">
+                        
+                        <div class="form-group">
+                            <label>Task Name</label>
+                            <input type="text" id="elementTitle" placeholder="e.g., Project Review Meeting" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Schedule Time</label>
+                            <div class="time-input-wrapper">
+                                <input type="time" id="elementTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Task Type</label>
+                            <select id="elementCategory">
+                                <option value="routine">Routine</option>
+                                <option value="workout">Workout</option>
+                                <option value="meeting">Meeting</option>
+                                <option value="business">Business</option>
+                                <option value="freetime">Freetime/Funtime</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button id="addElementBtn">Add</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-container">
+                    <button class="tab-btn active" data-tab="all">All Items</button>
+                    <button class="tab-btn" data-tab="routine">Routine</button>
+                    <button class="tab-btn" data-tab="workout">Workouts</button>
+                    <button class="tab-btn" data-tab="meeting">Meetings</button>
+                    <button class="tab-btn" data-tab="business">Business</button>
+                    <button class="tab-btn" data-tab="freetime">Freetime</button>
+                </div>
+
+                <div class="panel">
+                    <ul id="matrixList"></ul>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+    <script src="assets/app.js"></script>
+</body>
+</html>
